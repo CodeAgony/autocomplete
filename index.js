@@ -7,10 +7,20 @@ const getData = async () => {
 }
 getData();
 
-// Getting matches
+// Display matches
+const matchContainer = document.getElementById("matches");
+const displayMatches = () => {
+    const html = matches.map(match => {return `<li>${match.city}</li>`})
+    matchContainer.innerHTML = html.join('');
+}
+
+// Get matches
 let matches = [];
 const getMatches = () => {
     regex = new RegExp(input.value, "gi");
     matches = data.filter(place => place.city.match(regex) || place.state.match(regex));
+    // Reorder
+    displayMatches();
 }
 input.addEventListener("change", getMatches);
+input.addEventListener("keyup", getMatches);
