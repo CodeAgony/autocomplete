@@ -7,20 +7,14 @@ const getData = async () => {
 }
 getData();
 
-// Display matches
+// Get and display matches
 const matchContainer = document.getElementById("matches");
-const displayMatches = () => {
+const getMatches = () => {
+    regex = new RegExp(input.value, "gi");
+    let matches = data.filter(place => place.city.match(regex) || place.state.match(regex));
     const html = matches.map(match => {return `<li>${match.city}</li>`})
     input.value != "" ? matchContainer.innerHTML = html.join('') : matchContainer.innerHTML = null;
 }
 
-// Get matches
-let matches = [];
-const getMatches = () => {
-    regex = new RegExp(input.value, "gi");
-    matches = data.filter(place => place.city.match(regex) || place.state.match(regex));
-    // Reorder
-    displayMatches();
-}
 input.addEventListener("change", getMatches);
 input.addEventListener("keyup", getMatches);
