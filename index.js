@@ -11,7 +11,7 @@ getData();
 const matchContainer = document.getElementById("matches");
 const displayMatches = () => {
     const html = matches.map(match => {return `<li>${match.city}</li>`})
-    matchContainer.innerHTML = html.join('');
+    input.value != "" ? matchContainer.innerHTML = html.join('') : matchContainer.innerHTML = null;
 }
 
 // Get matches
